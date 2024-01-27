@@ -31,11 +31,12 @@ export default function CheckoutNow({
 
   return (
     <Button
+      variant="outline"
       onClick={() => {
         buyNow(product.price_id);
       }}
     >
-      Add To Cart
+      Checkout Now
     </Button>
   );
 }
