@@ -1,4 +1,5 @@
 import AddToBag from "@/app/components/AddtoBag";
+import CheckoutNow from "@/app/components/CheckoutNow";
 import ImageGallery from "@/app/components/ImageGallery";
 import { fullProduct } from "@/app/interface";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,8 @@ async function getData(slug: string) {
   const data = await client.fetch(query);
   return data;
 }
+
+export const dynamic = "force-dynamic";
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const data: fullProduct = await getData(params.slug);
@@ -67,7 +70,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 key={data._id}
                 price_id={data.price_id}
               />
-              <Button>Check</Button>
+              <CheckoutNow
+                currency="USD"
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                key={data._id}
+                price_id={data.price_id}
+              />
             </div>
 
             <p className="mt-12 text-base text-gray-500 tracking-wide">{data.description}</p>
